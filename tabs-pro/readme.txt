@@ -2,9 +2,9 @@
 Contributors: themepoints
 Donate link: https://themepoints.com
 Tags:  tab, jquery tabs, responsive tabs, tabs, Tabs plugin, tabs plugin jquery, tabs plugin wordpress, tabs short-code, tabs Widget
-Requires at least: 3.8
-Tested up to: 6.6.1
-Stable tag: 1.5
+Requires at least: 4.0
+Tested up to: 6.8
+Stable tag: 1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,7 +19,7 @@ This plugin allows you to use shortcode to display tabs post/page or widget via 
 <ul>
 	<li><a href="https://themepoints.com/product/tabs-ultimate-shortcodes">Live Preview</a></li>
 	<li><a href="https://themepoints.com/tabultimate/documentation/">Documentation</a></li>
-	<li><a href="https://www.themepoints.com/contact/">Need Support</a></li>
+	<li><a href="https://themepoints.com/contact/">Need Support</a></li>
 </ul>
 
 
@@ -100,7 +100,6 @@ https://www.youtube.com/watch?v=KTSxUfdYj2g&feature=youtu.be
 
 
 
-
 == Screenshots ==
 
 1. screenshot-1
@@ -114,6 +113,14 @@ https://www.youtube.com/watch?v=KTSxUfdYj2g&feature=youtu.be
 
 
 == Changelog ==
+
+= 1.6 =
+* Release Date - 04/17/2025*
+* Fix Css Issues.
+* Update Options Page.
+* Update Options Page UI.
+* Added New Options.
+* Added New Shortcode Options.
 
 = 1.5 =
 * Release Date - 02/09/2024*

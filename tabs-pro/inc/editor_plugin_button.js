@@ -18,7 +18,6 @@
 
 				//prompt for a tag to use
 
-
 				var tptabs_ultimate = '';
 				tptabs_ultimate += '[tptabs_ultimate width="" initialtab=1 autoplayinterval=0 color="dark"]<br/>';
 				tptabs_ultimate += '[tptabs_tab_container]<br/>';

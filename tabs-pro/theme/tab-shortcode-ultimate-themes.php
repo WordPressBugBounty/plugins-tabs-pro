@@ -1,8 +1,11 @@
-<?php 
-if ( ! defined( 'ABSPATH' ) ) exit;
+<?php
+
+if( !defined( 'ABSPATH' ) ){
+    exit;
+}
 
 function TP_tab_Free_Shortcode_ultimate_body($postid){
-	
+
 	$tcpfeaturess                                   = get_post_meta( $postid, 'custom_accordion_wordpresspro_columns');
 	$tp_custom_tabultimate_shortcode_tabs_themes    = get_post_meta( $postid, 'tp_custom_tabultimate_shortcode_tabs_themes', true );
 	$tp_custom_tabultimate_shortcode_tabs_activated = get_post_meta( $postid, 'tp_custom_tabultimate_shortcode_tabs_activated', true );
@@ -24,7 +27,7 @@ function TP_tab_Free_Shortcode_ultimate_body($postid){
 	$custom_tabultimate_shortcode_active_font_color = get_post_meta( $postid, 'custom_tabultimate_shortcode_active_font_color', true );
 	if(empty($custom_tabultimate_shortcode_active_font_color)) {
 	$custom_tabultimate_shortcode_active_font_color = "#000";
-	}		
+	}
 	
 	$custom_tabultimate_shortcode_active_bg_color   = get_post_meta( $postid, 'custom_tabultimate_shortcode_active_bg_color', true );
 	if(empty($custom_tabultimate_shortcode_active_bg_color)) {
@@ -70,7 +73,7 @@ function TP_tab_Free_Shortcode_ultimate_body($postid){
 			$logologcreate .='
 			</div>
 		</div>';
-				
+
 		$logologcreate.='
 		<script type="text/javascript">
 			jQuery(document).ready(function($){

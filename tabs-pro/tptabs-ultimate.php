@@ -3,14 +3,13 @@
 		Plugin Name: Tptabs Ultimate Shortcodes
 		Plugin URI: https://themepoints.com/
 		Description: Tab Shortcode Ultimate is yet another simple, responsive, lightweight jQuery tabs plugin for creating responsive tabbed panels with unlimited options 
-		Version: 1.6
+		Version: 1.7
 		Author: Themepoints
 		Author URI: https://themepoints.com/
 		Text Domain: tptabs-ultimate
 		Domain Path: /languages
 		License: GPLv2
 	*/
-
 
     if( !defined( 'ABSPATH' ) ){
         exit;
@@ -49,11 +48,9 @@
 	include( plugin_dir_path( __FILE__ ) . 'metabox/custom-meta-boxes-free.php' );
 	include( plugin_dir_path( __FILE__ ) . 'theme/tab-shortcode-ultimate-themes.php' );
 
-
 	// Tab Shortcode Ultimate Register Meta Boxes Version 1.1
 	function tp_custom_tabultimate_shortcode_filter_meta_box_free( $meta_boxes ) {
 	  $meta_boxes[] = array(
-
 		'id'          => 'custom_accordion_wordpress_feature',
 		'title'       => 'Tab Free',
 		'pages'       => array('tp_tab_pro'),
@@ -67,17 +64,16 @@
 			'name'    => 'Tab Free Details',
 			'type' => 'group',
 			'repeatable'     => true,
-			'sortable'       => true,			
+			'sortable'       => true,
 			'repeatable_max' => 4,
 			
 			'fields' => array(
 				array(
 				'id'              => 'custom_accordions_pro_title',
-				'name'            => 'Title',                
+				'name'            => 'Title',
 				'type'            => 'text',
 				'cols'            => 4
 				),
-				
 				array(
 					'id' => 'field-14',
 					'name' => 'Select Icons',
@@ -648,10 +644,10 @@
 					),
 					array(
 						'id'              => 'custom_accordions_pro_details',
-						'name'            => 'Description',                
+						'name'            => 'Description',
 						'type'            => 'wysiwyg',
 						'sanitization_cb' => false,
-						'options' => array( 'textarea_rows' => 8, ),
+						'options'         => array( 'textarea_rows' => 8, ),
 						'default'         => 'Insert Your Description Here?',
 					),
 				)

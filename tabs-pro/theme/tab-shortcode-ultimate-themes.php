@@ -5,7 +5,7 @@ if( !defined( 'ABSPATH' ) ){
 }
 
 function TP_tab_Free_Shortcode_ultimate_body($postid){
-
+	// Retrieve styled settings with default fallback values
 	$tcpfeaturess                                   = get_post_meta( $postid, 'custom_accordion_wordpresspro_columns');
 	$tp_custom_tabultimate_shortcode_tabs_themes    = get_post_meta( $postid, 'tp_custom_tabultimate_shortcode_tabs_themes', true );
 	$tp_custom_tabultimate_shortcode_tabs_activated = get_post_meta( $postid, 'tp_custom_tabultimate_shortcode_tabs_activated', true );
@@ -13,31 +13,11 @@ function TP_tab_Free_Shortcode_ultimate_body($postid){
 	$tp_custom_tabultimate_shortcode_tabs_openhover = get_post_meta( $postid, 'tp_custom_tabultimate_shortcode_tabs_openhover', true );
 	$custom_tabultimate_shortcode_in_transition     = get_post_meta( $postid, 'custom_tabultimate_shortcode_in_transition', true );
 	$custom_tabultimate_shortcode_out_transition    = get_post_meta( $postid, 'custom_tabultimate_shortcode_out_transition', true );
-
-	$custom_tabultimate_shortcode_title_font_size   = get_post_meta( $postid, 'custom_tabultimate_shortcode_title_font_size', true );
-	if(empty($custom_tabultimate_shortcode_title_font_size)) {
-	$custom_tabultimate_shortcode_title_font_size   = "15";
-	}
-	
-	$custom_tabultimate_shortcode_title_font_color  = get_post_meta( $postid, 'custom_tabultimate_shortcode_title_font_color', true );
-	if(empty($custom_tabultimate_shortcode_title_font_color)) {
-	$custom_tabultimate_shortcode_title_font_color  = "#21759b";
-	}
-	
-	$custom_tabultimate_shortcode_active_font_color = get_post_meta( $postid, 'custom_tabultimate_shortcode_active_font_color', true );
-	if(empty($custom_tabultimate_shortcode_active_font_color)) {
-	$custom_tabultimate_shortcode_active_font_color = "#000";
-	}
-	
-	$custom_tabultimate_shortcode_active_bg_color   = get_post_meta( $postid, 'custom_tabultimate_shortcode_active_bg_color', true );
-	if(empty($custom_tabultimate_shortcode_active_bg_color)) {
-	$custom_tabultimate_shortcode_active_bg_color   = "#fff";
-	}
-	
-	$custom_tabultimate_shortcode_content_bg_color  = get_post_meta( $postid, 'custom_tabultimate_shortcode_content_bg_color', true );
-	if(empty($custom_tabultimate_shortcode_content_bg_color)) {
-	$custom_tabultimate_shortcode_content_bg_color  = "#f6f6f6";
-	}
+	$custom_tabultimate_shortcode_title_font_size   = get_post_meta( $postid, 'custom_tabultimate_shortcode_title_font_size', true ) ?: '15';
+	$custom_tabultimate_shortcode_title_font_color  = get_post_meta( $postid, 'custom_tabultimate_shortcode_title_font_color', true ) ?: '#21759b';
+	$custom_tabultimate_shortcode_active_font_color = get_post_meta( $postid, 'custom_tabultimate_shortcode_active_font_color', true ) ?: '#000000';
+	$custom_tabultimate_shortcode_active_bg_color   = get_post_meta( $postid, 'custom_tabultimate_shortcode_active_bg_color', true ) ?: '#ffffff';
+	$custom_tabultimate_shortcode_content_bg_color  = get_post_meta( $postid, 'custom_tabultimate_shortcode_content_bg_color', true ) ?: '#f6f6f6';
 	
 	$tabmultiid = rand(1,1000);
 	
@@ -141,5 +121,4 @@ function TP_tab_Free_Shortcode_ultimate_body($postid){
 		return $logologcreate;
 	}
 }
-
 ?>

@@ -3,58 +3,60 @@
         exit;
     }
 
-	/***************************************
-	Tab Ultimate Shortcode post type setting
-	***************************************/
+	// Register Post Type
 	function free_tp_custom_tabultimate_shortcode_post_register() {
 		$labels = array(
-			'name' => _x('Tabs Free', 'post type general name'),
-			'singular_name' => _x('Tab', 'post type singular name'),
-			'add_new' => _x('Add New Tab', 'tp_tabs_pro'),
-			'add_new_item' => __('Add New Tab'),
-			'edit_item' => __('Edit Tab'),
-			'new_item' => __('New Tab'),
-			'view_item' => __('View Tab'),
-			'search_items' => __('Search Tab'),
-			'not_found' =>  __('Nothing found'),
+			'name'               => _x('Tabs Free', 'post type general name'),
+			'singular_name'      => _x('Tab', 'post type singular name'),
+			'add_new'            => _x('Add New Tab', 'tp_tabs_pro'),
+			'add_new_item'       => __('Add New Tab'),
+			'edit_item'          => __('Edit Tab'),
+			'new_item'           => __('New Tab'),
+			'view_item'          => __('View Tab'),
+			'search_items'       => __('Search Tab'),
+			'not_found'          =>  __('Nothing found'),
 			'not_found_in_trash' => __('Nothing found in Trash'),
-			'parent_item_colon' => ''
+			'parent_item_colon'  => ''
 		);
 		$args = array(
-			'labels' => $labels,
-			'public' => true,
+			'labels'             => $labels,
+			'public'             => true,
 			'publicly_queryable' => true,
-			'show_ui' => true,
-			'query_var' => true,
-			'menu_icon' => null,
-			'rewrite' => true,
-			'capability_type' => 'post',
-			'hierarchical' => false,
-			'menu_position' => null,
-			'supports' => array('title'),
-			'menu_icon'   => 'dashicons-welcome-add-page',				
+			'show_ui'            => true,
+			'query_var'          => true,
+			'menu_icon'          => null,
+			'rewrite'            => true,
+			'capability_type'    => 'post',
+			'hierarchical'       => false,
+			'menu_position'      => null,
+			'supports'           => array('title'),
+			'menu_icon'          => 'dashicons-welcome-add-page',
 		  );
 		register_post_type( 'tp_tab_pro' , $args );
 	}
 	add_action('init', 'free_tp_custom_tabultimate_shortcode_post_register');
 	
+	// Manage Shortcode Column
 	function free_tp_custom_tabultimate_add_shortcode_column( $columns ) {
-		return array_merge( $columns, 
-			array( 'shortcode' => __( 'Shortcode', 'tpaccordions' ) ) );
+		return array_merge(
+			$columns, 
+			array( 'shortcode' => __( 'Shortcode', 'tpaccordions' ) )
+		);
 	}
 	add_filter( 'manage_tp_tab_pro_posts_columns' , 'free_tp_custom_tabultimate_add_shortcode_column' );
 
+	// Update Publish Button Text
 	function free_tp_custom_tabultimate_add_change_publish_button( $translation, $text ) {
 		if ( 'tp_tab_pro' == get_post_type()){
 			if ( $text == 'Publish' ){
 				return 'Publish Tab';
 			}
 		}
-
 		return $translation;
 	}
 	add_filter( 'gettext', 'free_tp_custom_tabultimate_add_change_publish_button', 10, 2 );
 
+	// Manage Shortcode Column
 	function free_tp_custom_tabultimate_add_posts_shortcode_display( $column, $post_id ) {
 		if ($column == 'shortcode'){
 			?>
@@ -62,14 +64,14 @@
 			<?php
 		}
 	}
-	add_action( 'manage_tp_tab_pro_posts_custom_column' , 'free_tp_custom_tabultimate_add_posts_shortcode_display', 10, 2 );	
+	add_action( 'manage_tp_tab_pro_posts_custom_column' , 'free_tp_custom_tabultimate_add_posts_shortcode_display', 10, 2 );
 	
 	// Adds a box to the main column on the Post and Page edit screens
 	function free_tp_custom_tabultimate_shortcode_add_custom_box() {
 		$screens = array( 'tp_tab_pro' );
 		foreach ( $screens as $screen ) {
 			add_meta_box('tabultimate_sectionid', __( 'Tab Settings','tp_tabs_pro' ),'free_tp_custom_tabultimate_shortcode_inner_custom_m_box', $screen);
-		}     
+		}
 	}
 	add_action( 'add_meta_boxes', 'free_tp_custom_tabultimate_shortcode_add_custom_box' );
 
@@ -78,8 +80,6 @@
 		global $post;
 		// Use nonce for verification
 		wp_nonce_field( plugin_basename( __FILE__ ), 'free_tp_custom_tabultimate_shortcode_inner_m_boxes' );
-		?>
-		<?php
 
 		//get the saved meta as an arry
 		$tp_custom_tabultimate_shortcode_tabs_themes    = get_post_meta( $post->ID, 'tp_custom_tabultimate_shortcode_tabs_themes', true );
@@ -104,7 +104,7 @@
 						</th>
 						<td style="vertical-align: middle;">
 							<select class="timezone_string" name="tp_custom_tabultimate_shortcode_tabs_themes">
-								<option value="theme1" <?php if($tp_custom_tabultimate_shortcode_tabs_themes=='theme1') echo "selected"; ?> >Default</option>
+								<option value="theme1" <?php if($tp_custom_tabultimate_shortcode_tabs_themes=='theme1') echo "selected"; ?> ><?php echo __('Default:', 'tp_tabs_pro'); ?></option>
 							</select><br/>
 						</td>
 					</tr>
@@ -261,111 +261,146 @@
 				</table>
 			</div>
 		</div>
-
 		<?php
 	}
 
-
 	// When the post is saved, saves our custom data
 	function free_tp_custom_tabultimate_shortcode_inner_save_postdata( $post_id ) {
-		// verify if this is an auto save routine. 
-		// If it is our form has not been submitted, so we dont want to do anything
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
-			return $post_id;
+
+		// Doing autosave then return.
+	    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+	        return;
+	    }
+
+	    // Check if current user has permission to edit the post
+	    if ( ! current_user_can( 'edit_post', $post_id ) ) {
+	        return;
+	    }
 
 		// verify this came from the our screen and with proper authorization,
-		// because save_post can be triggered at other times
-		if ( !isset( $_POST['free_tp_custom_tabultimate_shortcode_inner_m_boxes'] ) )
-			return;
+		if ( ! isset( $_POST['free_tp_custom_tabultimate_shortcode_inner_m_boxes'] ) ) {
+		    return;
+		}
 
-		if ( !wp_verify_nonce( $_POST['free_tp_custom_tabultimate_shortcode_inner_m_boxes'], plugin_basename( __FILE__ ) ) )
-			return;
+		if ( ! wp_verify_nonce( $_POST['free_tp_custom_tabultimate_shortcode_inner_m_boxes'], plugin_basename( __FILE__ ) ) ) {
+		    return;
+		}
 
 		// OK, we're authenticated: we need to find and save the data
-		$tp_custom_tabultimate_shortcode_tabs_themes    = sanitize_text_field( $_POST['tp_custom_tabultimate_shortcode_tabs_themes'] );
-		$tp_custom_tabultimate_shortcode_tabs_activated = sanitize_text_field( $_POST['tp_custom_tabultimate_shortcode_tabs_activated'] );
-		$tp_custom_tabultimate_shortcode_tabs_positions = sanitize_text_field( $_POST['tp_custom_tabultimate_shortcode_tabs_positions'] );
-		$tp_custom_tabultimate_shortcode_tabs_openhover = sanitize_text_field( $_POST['tp_custom_tabultimate_shortcode_tabs_openhover'] );
-		$custom_tabultimate_shortcode_in_transition     = sanitize_text_field( $_POST['custom_tabultimate_shortcode_in_transition'] );
-		$custom_tabultimate_shortcode_out_transition    = sanitize_text_field( $_POST['custom_tabultimate_shortcode_out_transition'] );
-		$custom_tabultimate_shortcode_title_font_color  = sanitize_text_field( $_POST['custom_tabultimate_shortcode_title_font_color'] );
-		$custom_tabultimate_shortcode_active_font_color = sanitize_text_field( $_POST['custom_tabultimate_shortcode_active_font_color'] );
-		$custom_tabultimate_shortcode_active_bg_color   = sanitize_text_field( $_POST['custom_tabultimate_shortcode_active_bg_color'] );
-		$custom_tabultimate_shortcode_content_bg_color  = sanitize_text_field( $_POST['custom_tabultimate_shortcode_content_bg_color'] );
-		
-		update_post_meta( $post_id, 'tp_custom_tabultimate_shortcode_tabs_themes', $tp_custom_tabultimate_shortcode_tabs_themes );
-		update_post_meta( $post_id, 'tp_custom_tabultimate_shortcode_tabs_activated', $tp_custom_tabultimate_shortcode_tabs_activated );
-		update_post_meta( $post_id, 'tp_custom_tabultimate_shortcode_tabs_positions', $tp_custom_tabultimate_shortcode_tabs_positions );
-		update_post_meta( $post_id, 'tp_custom_tabultimate_shortcode_tabs_openhover', $tp_custom_tabultimate_shortcode_tabs_openhover );
-		update_post_meta( $post_id, 'custom_tabultimate_shortcode_in_transition', $custom_tabultimate_shortcode_in_transition );
-		update_post_meta( $post_id, 'custom_tabultimate_shortcode_out_transition', $custom_tabultimate_shortcode_out_transition );
-		update_post_meta( $post_id, 'custom_tabultimate_shortcode_title_font_color', $custom_tabultimate_shortcode_title_font_color );
-		update_post_meta( $post_id, 'custom_tabultimate_shortcode_active_font_color', $custom_tabultimate_shortcode_active_font_color );
-		update_post_meta( $post_id, 'custom_tabultimate_shortcode_active_bg_color', $custom_tabultimate_shortcode_active_bg_color );
-		update_post_meta( $post_id, 'custom_tabultimate_shortcode_content_bg_color', $custom_tabultimate_shortcode_content_bg_color );
+
+		#Checks for input and sanitizes/saves if needed
+		if ( isset( $_POST[ 'tp_custom_tabultimate_shortcode_tabs_themes' ] ) ) {
+			$tp_custom_tabultimate_shortcode_tabs_themes = sanitize_text_field( $_POST['tp_custom_tabultimate_shortcode_tabs_themes'] );
+			update_post_meta( $post_id, 'tp_custom_tabultimate_shortcode_tabs_themes', $tp_custom_tabultimate_shortcode_tabs_themes );
+		}
+
+		#Checks for input and sanitizes/saves if needed
+		if ( isset( $_POST[ 'tp_custom_tabultimate_shortcode_tabs_activated' ] ) ) {
+			$tp_custom_tabultimate_shortcode_tabs_activated = sanitize_text_field( $_POST['tp_custom_tabultimate_shortcode_tabs_activated'] );
+			update_post_meta( $post_id, 'tp_custom_tabultimate_shortcode_tabs_activated', $tp_custom_tabultimate_shortcode_tabs_activated );
+		}
+
+		#Checks for input and sanitizes/saves if needed
+		if ( isset( $_POST[ 'tp_custom_tabultimate_shortcode_tabs_positions' ] ) ) {
+			$tp_custom_tabultimate_shortcode_tabs_positions = sanitize_text_field( $_POST['tp_custom_tabultimate_shortcode_tabs_positions'] );
+			update_post_meta( $post_id, 'tp_custom_tabultimate_shortcode_tabs_positions', $tp_custom_tabultimate_shortcode_tabs_positions );
+		}
+
+		#Checks for input and sanitizes/saves if needed
+		if ( isset( $_POST[ 'tp_custom_tabultimate_shortcode_tabs_openhover' ] ) ) {
+			$tp_custom_tabultimate_shortcode_tabs_openhover = sanitize_text_field( $_POST['tp_custom_tabultimate_shortcode_tabs_openhover'] );
+			update_post_meta( $post_id, 'tp_custom_tabultimate_shortcode_tabs_openhover', $tp_custom_tabultimate_shortcode_tabs_openhover );
+		}
+
+		#Checks for input and sanitizes/saves if needed
+		if ( isset( $_POST[ 'custom_tabultimate_shortcode_out_transition' ] ) ) {
+			$custom_tabultimate_shortcode_out_transition = sanitize_text_field( $_POST['custom_tabultimate_shortcode_out_transition'] );
+			update_post_meta( $post_id, 'custom_tabultimate_shortcode_out_transition', $custom_tabultimate_shortcode_out_transition );
+		}
+
+		#Checks for input and sanitizes/saves if needed
+		if ( isset( $_POST[ 'custom_tabultimate_shortcode_title_font_color' ] ) ) {
+			$custom_tabultimate_shortcode_title_font_color = sanitize_hex_color( $_POST['custom_tabultimate_shortcode_title_font_color'] );
+			update_post_meta( $post_id, 'custom_tabultimate_shortcode_title_font_color', $custom_tabultimate_shortcode_title_font_color );
+		}
+
+		#Checks for input and sanitizes/saves if needed
+		if ( isset( $_POST[ 'custom_tabultimate_shortcode_active_font_color' ] ) ) {
+			$custom_tabultimate_shortcode_active_font_color = sanitize_hex_color( $_POST['custom_tabultimate_shortcode_active_font_color'] );
+			update_post_meta( $post_id, 'custom_tabultimate_shortcode_active_font_color', $custom_tabultimate_shortcode_active_font_color );
+		}
+
+		#Checks for input and sanitizes/saves if needed
+		if ( isset( $_POST[ 'custom_tabultimate_shortcode_active_bg_color' ] ) ) {
+			$custom_tabultimate_shortcode_active_bg_color = sanitize_hex_color( $_POST['custom_tabultimate_shortcode_active_bg_color'] );
+			update_post_meta( $post_id, 'custom_tabultimate_shortcode_active_bg_color', $custom_tabultimate_shortcode_active_bg_color );
+		}
+
+		#Checks for input and sanitizes/saves if needed
+		if ( isset( $_POST[ 'custom_tabultimate_shortcode_content_bg_color' ] ) ) {
+			$custom_tabultimate_shortcode_content_bg_color = sanitize_hex_color( $_POST['custom_tabultimate_shortcode_content_bg_color'] );
+			update_post_meta( $post_id, 'custom_tabultimate_shortcode_content_bg_color', $custom_tabultimate_shortcode_content_bg_color );
+		}
 
 		// Sanitize and save 'custom_tabultimate_shortcode_title_font_size' field
 		if ( isset( $_POST['custom_tabultimate_shortcode_title_font_size'] ) ) {
 		    $custom_tabultimate_shortcode_title_font_size = intval( $_POST['custom_tabultimate_shortcode_title_font_size'] );
 		    update_post_meta( $post_id, 'custom_tabultimate_shortcode_title_font_size', $custom_tabultimate_shortcode_title_font_size );
 		}
-
 	}
-
 	// Do something with the data entered
 	add_action( 'save_post', 'free_tp_custom_tabultimate_shortcode_inner_save_postdata' );
 
+	function free_tp_tabultimate_shortcode_section($post) {
+	    // Show only for 'tp_tab_pro' post type
+	    if ($post->post_type !== 'tp_tab_pro') {
+	        return;
+	    }
 
-function free_tp_tabultimate_shortcode_section($post) {
-    // Show only for 'tp_tab_pro' post type
-    if ($post->post_type !== 'tp_tab_pro') {
-        return;
-    }
+	    // Generate the dynamic shortcode
+	    $shortcode = "[tabsprofree id='" . $post->ID . "']";
+	    $php_code = '<?php echo do_shortcode("[tabsprofree id=' . $post->ID . ']"); ?>';
 
-    // Generate the dynamic shortcode
-    $shortcode = "[tabsprofree id='" . $post->ID . "']";
-    $php_code = '<?php echo do_shortcode("[tabsprofree id=' . $post->ID . ']"); ?>';
+	    ?>
+	    <div style="padding: 15px 15px 25px 15px; border: 1px solid #ddd; background: #f9f9f9; margin-top: 15px;">
+		    <div style="display: flex; gap: 20px;">
 
-    ?>
-    <div style="padding: 15px 15px 25px 15px; border: 1px solid #ddd; background: #f9f9f9; margin-top: 15px;">
-	    <div style="display: flex; gap: 20px;">
+			    <div style="width: 50%;">
+			        <p>
+			            <strong><?php _e( 'Shortcode','tp_tabs_pro' ); ?>:</strong>
+			            <span id="shortcode-notice" style="color: green; display: none; margin-left: 10px;"><?php _e( 'Shortcode copied!','tp_tabs_pro' ); ?></span>
+			        </p>
+			        <p class="option-info"><?php _e('Click to copy the shortcode and paste it into a page or post to display Tab.','tp_tabs_pro' ); ?></p>
+			        <input type="text" id="shortcode-text" style="width:100%; cursor:pointer; box-shadow: none; border:none;outline:none;border-radius: 0" value="<?php echo esc_attr($shortcode); ?>" readonly onclick="copyToClipboard(this, 'shortcode-notice')">
+			    </div>
 
-		    <div style="width: 50%;">
-		        <p>
-		            <strong><?php _e( 'Shortcode','tp_tabs_pro' ); ?>:</strong>
-		            <span id="shortcode-notice" style="color: green; display: none; margin-left: 10px;"><?php _e( 'Shortcode copied!','tp_tabs_pro' ); ?></span>
-		        </p>
-		        <p class="option-info"><?php _e('Click to copy the shortcode and paste it into a page or post to display Tab.','tp_tabs_pro' ); ?></p>
-		        <input type="text" id="shortcode-text" style="width:100%; cursor:pointer; box-shadow: none; border:none;outline:none;border-radius: 0" value="<?php echo esc_attr($shortcode); ?>" readonly onclick="copyToClipboard(this, 'shortcode-notice')">
+			    <div style="width: 50%;">
+			        <p>
+			            <strong><?php _e( 'PHP Code for Theme Files','tp_tabs_pro' ); ?>:</strong>
+			            <span id="php-notice" style="color: green; display: none; margin-left: 10px;"><?php _e( 'PHP code copied!','tp_tabs_pro' ); ?></span>
+			        </p>
+			        <p class="option-info"><?php _e('Click to copy the PHP code and use it in your theme files to display Tab.','tp_tabs_pro' ); ?></p>
+			        <input type="text" id="php-code-text" style="width:100%; cursor:pointer; box-shadow: none; border:none;outline:none;border-radius: 0" value="<?php echo esc_attr($php_code); ?>" readonly onclick="copyToClipboard(this, 'php-notice')">
+			    </div>
+
 		    </div>
-
-		    <div style="width: 50%;">
-		        <p>
-		            <strong><?php _e( 'PHP Code for Theme Files','tp_tabs_pro' ); ?>:</strong>
-		            <span id="php-notice" style="color: green; display: none; margin-left: 10px;"><?php _e( 'PHP code copied!','tp_tabs_pro' ); ?></span>
-		        </p>
-		        <p class="option-info"><?php _e('Click to copy the PHP code and use it in your theme files to display Tab.','tp_tabs_pro' ); ?></p>
-		        <input type="text" id="php-code-text" style="width:100%; cursor:pointer; box-shadow: none; border:none;outline:none;border-radius: 0" value="<?php echo esc_attr($php_code); ?>" readonly onclick="copyToClipboard(this, 'php-notice')">
-		    </div>
-
 	    </div>
-    </div>
 
-    <script>
-        function copyToClipboard(inputField, noticeId) {
-            inputField.select();
-            navigator.clipboard.writeText(inputField.value);
+	    <script>
+	        function copyToClipboard(inputField, noticeId) {
+	            inputField.select();
+	            navigator.clipboard.writeText(inputField.value);
 
-            // Show copied message beside the label
-            var notice = document.getElementById(noticeId);
-            notice.style.display = "inline";
+	            // Show copied message beside the label
+	            var notice = document.getElementById(noticeId);
+	            notice.style.display = "inline";
 
-            // Hide the message after 2 seconds
-            setTimeout(function() {
-                notice.style.display = "none";
-            }, 2000);
-        }
-    </script>
-    <?php
-}
-add_action('edit_form_after_title', 'free_tp_tabultimate_shortcode_section');
+	            // Hide the message after 2 seconds
+	            setTimeout(function() {
+	                notice.style.display = "none";
+	            }, 2000);
+	        }
+	    </script>
+	    <?php
+	}
+	add_action('edit_form_after_title', 'free_tp_tabultimate_shortcode_section');

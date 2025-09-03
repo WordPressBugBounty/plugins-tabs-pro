@@ -129,7 +129,7 @@
 							<span class="tp_accordions_pro_hint"><?php echo __('Choose which tab to display initially. <span style="color:red;">(Upgrade Pro)</span>', 'tp_tabs_pro'); ?></span>
 						</td>
 					</tr>
-					
+
 					<tr valign="top">
 						<th scope="row">
 							<label for="tp_custom_tabultimate_shortcode_tabs_positions"><?php echo __('Tab Position:', 'tp_tabs_pro'); ?></label>
@@ -142,7 +142,7 @@
 							<span class="tp_accordions_pro_hint"><?php echo __('Tab Menu Position (Top/Bottom). Default : Top  <span style="color:red;">(Upgrade Pro)</span>', 'tp_tabs_pro'); ?></span>
 						</td>
 					</tr>
-					
+
 					<tr valign="top">
 						<th scope="row">
 							<label for="tp_custom_tabultimate_shortcode_tabs_openhover"><?php echo __('Tab Open On Hover:', 'tp_tabs_pro'); ?></label>

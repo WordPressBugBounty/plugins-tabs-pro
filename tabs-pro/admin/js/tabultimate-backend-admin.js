@@ -9,5 +9,4 @@
 		$(".tab-content").not(tab).css("display", "none");
 		$(tab).fadeIn();
 	});
-
 })( jQuery );

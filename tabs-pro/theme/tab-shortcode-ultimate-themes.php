@@ -46,7 +46,7 @@ function TP_tab_Free_Shortcode_ultimate_body($postid){
 			$count = 0;
 			foreach ($tcpfeaturess as $tcpfeature) {
 			$logologcreate .='<div class="tab_content" id="tab1-'.esc_attr( $count ).'">';
-			$logologcreate .= do_shortcode(wpautop($tcpfeature['custom_accordions_pro_details']));
+			$logologcreate .= wpautop( wp_kses_post( $tcpfeature['custom_accordions_pro_details'] ?? '' ) );
 			$logologcreate .='</div>';
 			$count++;
 			};

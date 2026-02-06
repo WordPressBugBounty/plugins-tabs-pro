@@ -205,12 +205,23 @@
 
 					<tr valign="top">
 						<th scope="row">
-							<label for="custom_tabultimate_shortcode_title_font_size"><?php _e( 'Tab Title Font Size:', 'tp_tabs_pro' ); ?></label>
+							<label for="custom_tabultimate_shortcode_title_font_size">
+								<?php echo esc_html__( 'Tab Title Font Size:', 'tp_tabs_pro' ); ?>
+							</label>
 						</th>
 						<td style="vertical-align: middle;">
-							<input type="number" name="custom_tabultimate_shortcode_title_font_size" id="custom_tabultimate_shortcode_title_font_size" min="10" class="timezone_string" required value="<?php  if($custom_tabultimate_shortcode_title_font_size !=''){echo $custom_tabultimate_shortcode_title_font_size; }else{ echo '15';} ?>">
+							<?php
+							$title_font_size = ! empty( $custom_tabultimate_shortcode_title_font_size )
+								? intval( $custom_tabultimate_shortcode_title_font_size )
+								: 15;
+							?>
+							<input type="number" name="custom_tabultimate_shortcode_title_font_size" id="custom_tabultimate_shortcode_title_font_size" min="10" required
+								value="<?php echo esc_attr( $title_font_size ); ?>"
+							/>
 							<br/>
-							<span class="tp_accordions_pro_hint toss"><?php echo __('Set Tab Title Font Size.', 'tp_tabs_pro'); ?></span>
+							<span class="tp_accordions_pro_hint toss">
+								<?php echo esc_html__( 'Set Tab Title Font Size.', 'tp_tabs_pro' ); ?>
+							</span>
 						</td>
 					</tr><!-- End Tab Title Font Size-->
 

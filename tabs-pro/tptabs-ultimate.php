@@ -3,7 +3,7 @@
 		Plugin Name: Tptabs Ultimate Shortcodes
 		Plugin URI: https://themepoints.com/
 		Description: Tab Shortcode Ultimate is yet another simple, responsive, lightweight jQuery tabs plugin for creating responsive tabbed panels with unlimited options 
-		Version: 1.9
+		Version: 2.0.0
 		Author: Themepoints
 		Author URI: https://themepoints.com/
 		Text Domain: tptabs-ultimate
@@ -659,7 +659,6 @@
 }
 add_filter( 'cmb_meta_boxes', 'tp_custom_tabultimate_shortcode_filter_meta_box_free' );
 
-
 /*
 =================================
  Tp Tabs Ultimate Content Prefix
@@ -685,10 +684,10 @@ function tptabsfix_p($content) {
 
 function tptabs_ultimate_shortcodes( $atts, $content = null ) {
 	$atts = ( shortcode_atts( array(
-		'width' => '',
-		'initialtab' => 1,
+		'width'            => '',
+		'initialtab'       => 1,
 		'autoplayinterval' => 0,
-		'color' => 'dark'
+		'color'            => 'dark'
 	), $atts ) );
 
 	$colors_available = array('dark', 'blue');

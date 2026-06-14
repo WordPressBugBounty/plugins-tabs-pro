@@ -149,8 +149,8 @@
 						</th>
 						<td style="vertical-align:middle;">
 							<select class="timezone_string" name="tp_custom_tabultimate_shortcode_tabs_openhover">
-								<option value="false" <?php if($tp_custom_tabultimate_shortcode_tabs_openhover=='false') echo "selected"; ?> >False</option>
-								<option value="true" disabled <?php if($tp_custom_tabultimate_shortcode_tabs_openhover=='true') echo "selected"; ?> >True (Only For Premium)</option>
+								<option value="false" <?php if($tp_custom_tabultimate_shortcode_tabs_openhover=='false') echo "selected"; ?> >No</option>
+								<option value="true" disabled <?php if($tp_custom_tabultimate_shortcode_tabs_openhover=='true') echo "selected"; ?> >Yes (Pro Only)</option>
 							</select><br/>
 							<span class="tp_accordions_pro_hint"><?php echo __('Tab open on hover (true/false). Default : false  <span style="color:red;">(Upgrade Pro)</span>', 'tp_tabs_pro'); ?></span>
 						</td>

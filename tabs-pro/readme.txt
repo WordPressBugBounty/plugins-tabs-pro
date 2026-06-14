@@ -3,8 +3,8 @@ Contributors: themepoints
 Donate link: https://themepoints.com
 Tags:  tab, jquery tabs, responsive tabs, tabs, Tabs plugin, tabs plugin jquery, tabs plugin wordpress, tabs short-code, tabs Widget
 Requires at least: 4.0
-Tested up to: 6.9
-Stable tag: 2.0.0
+Tested up to: 7.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -108,6 +108,10 @@ https://www.youtube.com/watch?v=KTSxUfdYj2g&feature=youtu.be
 
 
 == Changelog ==
+
+= 2.0.1 =
+* Fix Css Issues.
+* Update Options Page.
 
 = 2.0.0 =
 * Release Date - 12/22/2025*

@@ -1,6 +1,5 @@
 (function( $ ) {
 	'use strict';
-
 	jQuery(".tabs-menu a").click(function(event) {
 		event.preventDefault();
 		$(this).parent().addClass("current");

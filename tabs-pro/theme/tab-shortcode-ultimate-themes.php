@@ -18,9 +18,9 @@ function TP_tab_Free_Shortcode_ultimate_body($postid){
 	$custom_tabultimate_shortcode_active_font_color = get_post_meta( $postid, 'custom_tabultimate_shortcode_active_font_color', true ) ?: '#000000';
 	$custom_tabultimate_shortcode_active_bg_color   = get_post_meta( $postid, 'custom_tabultimate_shortcode_active_bg_color', true ) ?: '#ffffff';
 	$custom_tabultimate_shortcode_content_bg_color  = get_post_meta( $postid, 'custom_tabultimate_shortcode_content_bg_color', true ) ?: '#f6f6f6';
-	
+
 	$tabmultiid = rand(1,1000);
-	
+
 	if( esc_attr($tp_custom_tabultimate_shortcode_tabs_themes ) =="theme1") {
 		$logologcreate ='';
 		$count = 0;
@@ -34,7 +34,7 @@ function TP_tab_Free_Shortcode_ultimate_body($postid){
 			}else{
 				$logologcreate .='';
 			}
-			
+
 			$logologcreate .=''.esc_html( $tcpfeature['custom_accordions_pro_title'] ).'';
 			$logologcreate .='</a></li>';
 			$count++;

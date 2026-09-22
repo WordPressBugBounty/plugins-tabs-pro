@@ -1,0 +1,556 @@
+/* ==========================================================================
+   TPTabs Ultimate Engine - Front-end Stylesheet
+   ========================================================================== */
+
+/* Main Container */
+.tptabs-container {
+    width: 100%;
+    margin: 20px 0;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.tptabs-container *, 
+.tptabs-container *::before, 
+.tptabs-container *::after {
+    box-sizing: inherit;
+}
+
+
+.tptabs-container .tc-tab-icon {
+    color: var(--tp-icon-color);
+    font-size: var(--tp-icon-size);
+}
+
+/* ==========================================================================
+   Horizontal Layout Styles (Default / Top)
+   ========================================================================== */
+.tptabs-container.tp-tabs-horizontal.tp-tabs-top .tptabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-bottom: 2px solid #e2e8f0;
+    gap: 4px;
+}
+
+.tptabs-container.tp-tabs-horizontal.tp-tabs-top .tptabs-nav li {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.tptabs-container.tp-tabs-horizontal.tp-tabs-top .tptabs-nav li a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f8fafc;
+    color: var(--tp-title-color);
+    font-size: var(--tp-title-size);
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid #cbd5e1;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    bottom: -2px;
+    outline:none;
+}
+
+.tptabs-container.tp-tabs-horizontal.tp-tabs-top .tptabs-nav li a:hover {
+    background-color: var(--tp-hover-bg);
+    color: var(--tp-hover-text);
+    outline:none;
+}
+
+.tptabs-container.tp-tabs-horizontal.tp-tabs-top .tptabs-nav li.active a {
+    color: var(--tp-active-color);
+    background-color: var(--tp-active-bg);
+    border-color: #e2e8f0;
+    border-bottom-color: #ffffff;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.tptabs-container.tp-tabs-horizontal.tp-tabs-top .tptabs-nav li.active a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #0284c7;
+    border-radius: 6px 6px 0 0;
+}
+
+.tptabs-container.tp-tabs-horizontal.tp-tabs-top .tptabs-content-wrapper {
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+}
+
+/* ==========================================================================
+   Vertical Layout Styles (.tp-tabs-vertical)
+   ========================================================================== */
+.tptabs-container.tp-tabs-vertical {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.tptabs-container.tp-tabs-vertical .tptabs-nav {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    min-width: 200px;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-bottom: none;
+    border-right: 2px solid #e2e8f0;
+    background-color: #f8fafc;
+    gap: 0;
+}
+
+.tptabs-container.tp-tabs-vertical .tptabs-nav li {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    width: 100%;
+}
+
+.tptabs-container.tp-tabs-vertical .tptabs-nav li a {
+    display: block;
+    width: 100%;
+    padding: 12px 18px;
+    background-color: transparent;
+    color: var(--tp-title-color);
+    font-size: var(--tp-title-size);
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    border-bottom: 1px solid #e2e8f0;
+    border-radius: 0;
+    box-sizing: border-box;
+    position: relative;
+    bottom: 0;
+}
+
+.tptabs-container.tp-tabs-vertical .tptabs-nav li a:hover {
+    background-color: var(--tp-hover-bg);
+    color: var(--tp-hover-text);
+}
+
+.tptabs-container.tp-tabs-vertical .tptabs-nav li.active a {
+    color: var(--tp-active-color);
+    background-color: var(--tp-active-bg);
+}
+
+.tptabs-container.tp-tabs-vertical .tptabs-nav li.active a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: auto;
+    width: 3px;
+    height: 100%;
+    background-color: #0284c7;
+    border-radius: 0;
+}
+
+.tptabs-container.tp-tabs-vertical .tptabs-content-wrapper {
+    flex: 1;
+    border: none;
+    border-radius: 0;
+}
+
+/* ==========================================================================
+   Bottom Menu Position Support (.tp-tabs-horizontal.tp-tabs-bottom)
+   ========================================================================== */
+.tptabs-container.tp-tabs-horizontal.tp-tabs-bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.tptabs-container.tp-tabs-horizontal.tp-tabs-bottom .tptabs-content-wrapper {
+    order: 1;
+    border: 1px solid #e2e8f0;
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+}
+
+.tptabs-container.tp-tabs-horizontal.tp-tabs-bottom .tptabs-nav {
+    order: 2;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-top: 2px solid #e2e8f0;
+    border-bottom: none;
+    background-color: #f8fafc;
+    gap: 4px;
+}
+
+.tptabs-container.tp-tabs-horizontal.tp-tabs-bottom .tptabs-nav li {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.tptabs-container.tp-tabs-horizontal.tp-tabs-bottom .tptabs-nav li a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f8fafc;
+    color: var(--tp-title-color);
+    font-size: var(--tp-title-size);
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid #cbd5e1;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    top: -2px;
+}
+
+.tptabs-container.tp-tabs-horizontal.tp-tabs-bottom .tptabs-nav li a:hover {
+    background-color: var(--tp-hover-bg);
+    color: var(--tp-hover-text);
+}
+
+.tptabs-container.tp-tabs-horizontal.tp-tabs-bottom .tptabs-nav li.active a {
+    color: var(--tp-active-color);
+    background-color: var(--tp-active-bg);
+    border-color: #e2e8f0;
+    border-bottom-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.tptabs-container.tp-tabs-horizontal.tp-tabs-bottom .tptabs-nav li.active a::before {
+    content: '';
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #0284c7;
+    border-radius: 0 0 6px 6px;
+}
+
+/* ==========================================================================
+   Shared Content Wrapper & Panels
+   ========================================================================== */
+.tptabs-content-wrapper {
+    position: relative;
+    background-color: var(--tp-content-bg);
+    color: var(--tp-content-color);
+    line-height: var(--tp-content-line);
+    border: 1px solid #e2e8f0;
+    padding: var(--tp-content-padding);
+    overflow: hidden;
+}
+.tptabs-content-wrapper .tab_content p{
+    font-size: var(--tp-content-size);
+}
+.tab_content {
+    display: none;
+    width: 100%;
+}
+.tptabs-content-wrapper .tab_content p:first-child {
+    margin: 0;
+}
+.tab_content.active-tab-panel {
+    display: block;
+}
+
+/* ==========================================================================
+   Mobile Responsive Adjustments
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    .tptabs-container.tp-tabs-horizontal .tptabs-nav,
+    .tptabs-container.tp-tabs-vertical .tptabs-nav {
+        flex-direction: column;
+        border-bottom: none;
+        width: 100%;
+    }
+    
+    .tptabs-container.tp-tabs-horizontal .tptabs-nav li a,
+    .tptabs-container.tp-tabs-vertical .tptabs-nav li a {
+        width: 100%;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        bottom: 0;
+        top: 0;
+    }
+
+    .tptabs-container.tp-tabs-vertical {
+        flex-direction: column;
+        border: none;
+    }
+
+    .tptabs-container.tp-tabs-vertical .tptabs-nav {
+        border-right: none;
+        border-bottom: 2px solid #e2e8f0;
+    }
+}
+
+
+/* ==========================================================================
+   Tab Navigation Alignment Support
+   ========================================================================== */
+.tptabs-container.tp-align-left .tptabs-nav {
+    justify-content: flex-start;
+}
+
+.tptabs-container.tp-align-center .tptabs-nav {
+    justify-content: center;
+}
+
+.tptabs-container.tp-align-right .tptabs-nav {
+    justify-content: flex-end;
+}
+
+.tptabs-container.tp-align-justified .tp-tabs-horizontal .tptabs-nav,
+.tptabs-container.tp-align-justified.tp-tabs-horizontal .tptabs-nav {
+    display: flex;
+}
+
+.tptabs-container.tp-align-justified .tptabs-nav li {
+    flex: 1;
+    text-align: center;
+}
+
+.tptabs-container.tp-align-justified .tptabs-nav li a {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+
+/* ==========================================================================
+   Tab Menu Style Variations (Final Override Block)
+   ========================================================================== */
+
+/* Style 1: Classic Bordered */
+.tptabs-container.tp-style-style-1 .tptabs-nav li a {
+    background-color: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    border-bottom: none !important;
+    border-radius: 6px 6px 0 0 !important;
+    color: var(--tp-title-color);
+    font-size: var(--tp-title-size);
+}
+.tptabs-container.tp-style-style-1 .tptabs-nav li.active a {
+    color: var(--tp-active-color);
+    background-color: var(--tp-active-bg);
+    border-color: #e2e8f0 !important;
+    border-bottom-color: #ffffff !important;
+}
+
+/* Style 2: Modern Pill / Rounded */
+.tptabs-container.tp-style-style-2 .tptabs-nav {
+    border-bottom: none !important;
+    gap: 8px !important;
+}
+.tptabs-container.tp-style-style-2 .tptabs-nav li a {
+    background-color: #f1f5f9;
+    border: none !important;
+    border-radius: 30px !important;
+    padding: 8px 18px !important;
+    bottom: 0 !important;
+    color: var(--tp-title-color);
+    font-size: var(--tp-title-size);
+}
+.tptabs-container.tp-style-style-2 .tptabs-nav li a:hover {
+    background-color: var(--tp-hover-bg);
+    color: var(--tp-hover-text);
+}
+.tptabs-container.tp-style-style-2 .tptabs-nav li.active a {
+    color: var(--tp-active-color);
+    background-color: var(--tp-active-bg);
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2) !important;
+}
+.tptabs-container.tp-style-style-2 .tptabs-nav li.active a::before {
+    display: none !important;
+}
+
+/* Style 3: Minimal Bottom Line */
+.tptabs-container.tp-style-style-3 .tptabs-nav {
+    border-bottom: 1px solid #e2e8f0 !important;
+    gap: 20px !important;
+    background: transparent !important;
+}
+.tptabs-container.tp-style-style-3 .tptabs-nav li a {
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 10px 4px !important;
+    bottom: 0 !important;
+    color: var(--tp-title-color);
+    font-size: var(--tp-title-size);
+    box-shadow: none !important;
+}
+.tptabs-container.tp-style-style-3 .tptabs-nav li a:hover {
+    background-color: var(--tp-hover-bg);
+    color: var(--tp-hover-text);
+}
+.tptabs-container.tp-style-style-3 .tptabs-nav li.active a {
+    color: var(--tp-active-color);
+    background-color: var(--tp-active-bg);
+    border: none !important;
+    box-shadow: none !important;
+}
+.tptabs-container.tp-style-style-3 .tptabs-nav li.active a::before {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -1px !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 2px !important;
+    background-color: #0284c7 !important;
+    border-radius: 0 !important;
+    top: auto !important;
+}
+
+
+/* ==========================================================================
+   Additional Unique Tab Menu Styles (Styles 4 - 7)
+   ========================================================================== */
+
+/* Style 4: Soft Floating Cards with Subtle Shadow */
+.tptabs-container.tp-style-style-4 .tptabs-nav {
+    border-bottom: none !important;
+    gap: 8px !important;
+    background: transparent !important;
+}
+.tptabs-container.tp-style-style-4 .tptabs-nav li a {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    padding: 10px 20px !important;
+    bottom: 0 !important;
+    color: var(--tp-title-color);
+    font-size: var(--tp-title-size);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02) !important;
+    transition: all 0.25s ease !important;
+}
+.tptabs-container.tp-style-style-4 .tptabs-nav li a:hover {
+    border-color: #cbd5e1 !important;
+    background-color: var(--tp-hover-bg);
+    color: var(--tp-hover-text);
+    transform: translateY(-1px);
+}
+.tptabs-container.tp-style-style-4 .tptabs-nav li.active a {
+    color: var(--tp-active-color);
+    background-color: var(--tp-active-bg);
+    border-color: #0f172a !important;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15) !important;
+}
+.tptabs-container.tp-style-style-4 .tptabs-nav li.active a::before {
+    display: none !important;
+}
+
+
+/* Style 5: Dark Mode Minimalist Bar */
+.tptabs-container.tp-style-style-5 .tptabs-nav {
+    background-color: #1e293b !important;
+    padding: 6px !important;
+    border-radius: 8px !important;
+    border-bottom: none !important;
+    gap: 4px !important;
+}
+.tptabs-container.tp-style-style-5 .tptabs-nav li a {
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 8px 16px !important;
+    bottom: 0 !important;
+    color: var(--tp-title-color);
+    font-size: var(--tp-title-size);
+}
+.tptabs-container.tp-style-style-5 .tptabs-nav li a:hover {
+    background-color: var(--tp-hover-bg);
+    color: var(--tp-hover-text);
+}
+.tptabs-container.tp-style-style-5 .tptabs-nav li.active a {
+    color: var(--tp-active-color);
+    background-color: var(--tp-active-bg);
+    border: none !important;
+    box-shadow: none !important;
+}
+.tptabs-container.tp-style-style-5 .tptabs-nav li.active a::before {
+    display: none !important;
+}
+
+
+/* ==========================================================================
+   Style 6: Classic Bordered Grid with Dividers & Icons Support
+   ========================================================================== */
+.tptabs-container.tp-style-style-6 .tptabs-nav {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 1px solid #cbd5e1 !important;
+    background-color: #f1f5f9 !important;
+    gap: 0 !important;
+    border-radius: 6px 6px 0 0 !important;
+    overflow: hidden !important;
+}
+
+.tptabs-container.tp-style-style-6 .tptabs-nav li {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    border-right: 1px solid #cbd5e1 !important;
+}
+
+.tptabs-container.tp-style-style-6 .tptabs-nav li:last-child {
+    border-right: none !important;
+}
+
+.tptabs-container.tp-style-style-6 .tptabs-nav li a {
+    padding: 14px 20px !important;
+    background-color: #f8fafc;
+    color: var(--tp-title-color);
+    font-size: var(--tp-title-size);
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease, color 0.2s ease !important;
+    position: relative !important;
+    bottom: 0 !important;
+    box-shadow: none !important;
+}
+
+.tptabs-container.tp-style-style-6 .tptabs-nav li a:hover {
+    background-color: var(--tp-hover-bg);
+    color: var(--tp-hover-text);
+}
+
+.tptabs-container.tp-style-style-6 .tptabs-nav li.active a {
+    color: var(--tp-active-color);
+    background-color: var(--tp-active-bg);
+    box-shadow: none !important;
+}
+
+.tptabs-container.tp-style-style-6 .tptabs-nav li.active a::before {
+    content: none !important;
+    position: absolute !important;
+    background-color: no-repeat;
+}
+
+.tptabs-container.tp-style-style-6 .tptabs-content-wrapper {
+    border-top: none !important;
+    border-radius: 0 0 6px 6px !important;
+}
